@@ -3,17 +3,19 @@
       xmlns:h="http://java.sun.com/jsf/html">
       
       <h:head>
-      
+      		<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
       </h:head>
       
       <h:body>
       		<h:form id="formlogin">
       			<h:panelGrid columns="2">
-      				<h:outputLabel value="Usuario: "/>
-      				<h:inputText value="#{loginController.usuario}"/>
+      				<h:outputLabel styleClass="colorText" value="Usuario*: "/>
+      				<h:inputText id="txtUsuario" value="#{loginController.usuario}" 
+      				required="true" requiredMessage="El usuario es requerido"/>
       				
-      				<h:outputLabel value="Contraseña: "/>
-      				<h:inputSecret value="#{loginController.password}"/>
+      				<h:outputLabel styleClass="colorText" value="Contraseña*: "/>
+      				<h:inputSecret id="txtPassword" value="#{loginController.password}" 
+      				required="true" requiredMessage="La contraseña es requerida"/>
       				
       				<h:commandButton value="Entrar" action="#{loginController.ingresar}"/>
       			</h:panelGrid>
