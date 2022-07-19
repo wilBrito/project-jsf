@@ -8,6 +8,27 @@
 	
 	<h:body>
 		Hola Mundo
+		<h:dataTable id="tblEmpleados" var="empleado" value="#{principalController.empleados}">
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Primer Apellido</f:facet>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Segundo Apellido</f:facet>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Puesto</f:facet>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Estatus</f:facet>
+			</h:column>
+		</h:dataTable>
 	</h:body>
 	
 </html>
