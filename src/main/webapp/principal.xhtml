@@ -4,29 +4,36 @@
       
 	<h:head>
 		<title>Pantalla Principal</title>
+		<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
 	</h:head>
 	
 	<h:body>
 		Hola Mundo
-		<h:dataTable id="tblEmpleados" var="empleado" value="#{principalController.empleados}">
+		<h:dataTable id="tblEmpleados" headerClass="headerTable" rowClasses="rowTable rowTableLine" var="empleado" value="#{principalController.empleados}">
 			<h:column>
 				<f:facet name="header">Nombre</f:facet>
+				<h:outputText value="#{empleado.nombre}"></h:outputText>
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Primer Apellido</f:facet>
+				<h:outputText value="#{empleado.primerApellido}"></h:outputText>
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Segundo Apellido</f:facet>
+				<h:outputText value="#{empleado.segundoApellido}"></h:outputText>
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Puesto</f:facet>
+				<h:outputText value="#{empleado.puesto}"></h:outputText>
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Estatus</f:facet>
+				<h:outputText value="ACTIVO" rendered="#{empleado.estatus}"></h:outputText>
+				<h:outputText value="NO ACTIVO" rendered="#{!empleado.estatus}"></h:outputText>
 			</h:column>
 		</h:dataTable>
 	</h:body>

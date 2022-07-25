@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -22,7 +23,16 @@ public class PrincipalController {
 	
 	private EmpleadoService empleadoService = new EmpleadoService();
 	
+	@PostConstruct
+	public void init() {
+		this.consultarEmpleados();
+	}
+	
 	public void consultarEmpleados() {
 		this.empleados = empleadoService.consultarEmpleados();
+	}
+	
+	public List<Empleado> getEmpleados(){
+		return empleados;
 	}
 }

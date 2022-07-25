@@ -77,6 +77,24 @@ public class Empleado {
 	public void setEstatus(boolean estatus) {
 		this.estatus = estatus;
 	}
+
+
+	/**
+	 * @return the puesto
+	 */
+	public String getPuesto() {
+		return puesto;
+	}
+
+
+	/**
+	 * @param puesto the puesto to set
+	 */
+	public void setPuesto(String puesto) {
+		this.puesto = puesto;
+	}
+	
+	
 	
 	
 }
