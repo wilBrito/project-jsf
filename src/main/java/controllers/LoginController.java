@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -13,7 +14,7 @@ import javax.faces.context.FacesContext;
  */
 
 @ManagedBean
-public class LoginController {
+public class LoginController implements Serializable{
 
 	private String usuario;
 	private String password;
