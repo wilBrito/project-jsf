@@ -5,8 +5,11 @@ import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+
+import dto.UsuarioDTO;
 
 /**
  * 
@@ -17,11 +20,16 @@ import javax.faces.context.FacesContext;
 public class LoginController implements Serializable{
 
 	private String usuario;
-	private String password;
+	private String password;	
+	
+	@ManagedProperty("#{sessionController}")
+	private SessionController sessionController;
 
 	public void ingresar() {
 		if (usuario.equals("wil") && password.equals("wil"))
 			try {
+				UsuarioDTO usuarioDTO = new UsuarioDTO(this.usuario, this.password);
+				this.sessionController.setUsuarioDTO(usuarioDTO);
 				this.redireccionar("principal.xhtml");
 			} catch (IOException e) {
 				FacesContext.getCurrentInstance().addMessage("formLogin:txtUsuario",
@@ -67,4 +75,23 @@ public class LoginController implements Serializable{
 		this.password = password;
 	}
 
+
+	/**
+	 * @return the sessionController
+	 */
+	public SessionController getSessionController() {
+		return sessionController;
+	}
+
+
+	/**
+	 * @param sessionController the sessionController to set
+	 */
+	public void setSessionController(SessionController sessionController) {
+		this.sessionController = sessionController;
+	}
+
+	
+	
+	
 }

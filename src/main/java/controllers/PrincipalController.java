@@ -20,6 +20,7 @@ import services.EmpleadoService;
 public class PrincipalController {
 
 	private List<Empleado> empleados;
+	private List<Empleado> empleadosFiltrados;
 	
 	private EmpleadoService empleadoService = new EmpleadoService();
 	
@@ -35,4 +36,19 @@ public class PrincipalController {
 	public List<Empleado> getEmpleados(){
 		return empleados;
 	}
+
+	/**
+	 * @return the empleadosFiltrados
+	 */
+	public List<Empleado> getEmpleadosFiltrados() {
+		return empleadosFiltrados;
+	}
+
+	/**
+	 * @param empleadosFiltrados the empleadosFiltrados to set
+	 */
+	public void setEmpleadosFiltrados(List<Empleado> empleadosFiltrados) {
+		this.empleadosFiltrados = empleadosFiltrados;
+	}
+	
 }

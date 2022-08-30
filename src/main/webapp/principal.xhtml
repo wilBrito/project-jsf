@@ -6,37 +6,80 @@
 	<h:head>
 		<title>Pantalla Principal</title>
 		<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+		
+		<meta name="viewport" content="width=device-width, user-scalable=no"/>
 	</h:head>
 	
 	<h:body>
-		Hola Mundo
-		<h:dataTable id="tblEmpleados" headerClass="headerTable" rowClasses="rowTable rowTableLine" var="empleado" value="#{principalController.empleados}">
-			<h:column>
-				<f:facet name="header">Nombre</f:facet>
-				<h:outputText value="#{empleado.nombre}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Primer Apellido</f:facet>
-				<h:outputText value="#{empleado.primerApellido}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Segundo Apellido</f:facet>
-				<h:outputText value="#{empleado.segundoApellido}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Puesto</f:facet>
-				<h:outputText value="#{empleado.puesto}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Estatus</f:facet>
-				<h:outputText value="ACTIVO" rendered="#{empleado.estatus}"></h:outputText>
-				<h:outputText value="NO ACTIVO" rendered="#{!empleado.estatus}"></h:outputText>
-			</h:column>
-		</h:dataTable>
+	
+		<p:outputLabel value="Bienvenido #{sessionController.usuarioDTO.usuario} a la pantalla principal"></p:outputLabel>
+		<p:commandButton value="Cerrar Sesión" action="#{sessionCloseController.cerrarSesion}" style="margin:0 0 0 1rem"></p:commandButton>
+		
+		<h:form>
+
+		
+				<p:dataTable id="tblEmpleados"  var="empleado" value="#{principalController.empleados}" paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+					{LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                     emptyMessage="No se encuentran registros"
+                     paginatorPosition="top"
+                     filteredValue="#{principalController.empleadosFiltrados}"
+                     >
+                     
+                     
+                     
+               <f:facet name="{Exporters}">
+				<div class="containerBtnExport">
+	                <p:commandButton  value="XLS" styleClass="mr-2 mb-2" style="margin:0 .5rem 0 .5rem">
+	                    <p:dataExporter type="xls" target="tblEmpleados" fileName="empleados"/>
+	                </p:commandButton>
+	
+	                <p:commandButton value="XLSX" styleClass="mr-2 mb-2" style="margin:0 .5rem 0 .5rem">
+	                    <p:dataExporter type="xlsxstream" target="tblEmpleados" fileName="empleados"/>
+	                </p:commandButton>
+	
+	                <p:commandButton value="PDF" styleClass="mr-2 mb-2" style="margin:0 .5rem 0 .5rem">
+	                    <p:dataExporter type="pdf" target="tblEmpleados" fileName="empleados"/>
+	                </p:commandButton>
+	
+	                <p:commandButton value="CSV" styleClass="mr-2 mb-2" style="margin:0 .5rem 0 .5rem">
+	                    <p:dataExporter type="csv" target="tblEmpleados" fileName="empleados" />
+	                </p:commandButton>
+	
+	                <p:commandButton value="XML" styleClass="mr-2 mb-2" style="margin:0 .5rem 0 .5rem">
+	                    <p:dataExporter type="xml" target="tblEmpleados" fileName="empleados"/>
+	                </p:commandButton>
+	
+	            </div>
+			</f:facet>
+                     
+                     
+				<p:column headerText="Nombre" filterBy="#{empleado.nombre}" filterMatchMode="contains" style="text-align:center" sortBy="#{empleado.nombre}">
+					<h:outputText value="#{empleado.nombre}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Primer Apellido" filterBy="#{empleado.primerApellido}" filterMatchMode="contains" style="text-align:center" sortBy="#{empleado.primerApellido}">
+					<h:outputText value="#{empleado.primerApellido}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Segundo Apellido" filterBy="#{empleado.segundoApellido}" filterMatchMode="contains" style="text-align:center" sortBy="#{empleado.segundoApellido}">
+					<h:outputText value="#{empleado.segundoApellido}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Puesto" filterBy="#{empleado.puesto}" filterMatchMode="contains" style="text-align:center" sortBy="#{empleado.puesto}">
+					<h:outputText value="#{empleado.puesto}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Estatus" style="text-align:center">
+					<h:outputText value="ACTIVO" rendered="#{empleado.estatus}" ></h:outputText>
+					<h:outputText value="NO ACTIVO" rendered="#{!empleado.estatus}"></h:outputText>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+		
 	</h:body>
 	
 </html>
